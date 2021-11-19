@@ -9,6 +9,7 @@ I) Differential gene analyis
    4. Python packages used in the analysis
    5. Algorithms and tests required for the analysis
    6. Conclusions that can be derived from the analysis
+<<<<<<< HEAD
 
 II) Mutation Analysis
 
@@ -558,4 +559,19 @@ Samples with High PDR- low reliability as drivers and vice-versa.
    f) https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-3443-8  
    g) https://www.sciencedirect.com/science/article/abs/pii/S0888754319309449?dgcid=rss_sd_all  
    h) https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0226461 
+=======
+3. Mutation Analysis
+5. Pathway Analysis
+   - What is PA?
+   - Why is it important?
+   - Overview of existing methods and workflow
+   - Datatypes, formats, platforms
+   - Python packages
+   - Algorithms employed 
+   - Conclusions
+   - Useful resources
+   - References
+7. Literary Analysis 
+8. Knowledge Graphs
+>>>>>>> Update Contributor Onboarding Documentation.md
 
