@@ -9,7 +9,8 @@ Types of Analysis:
    5. Algorithms and tests required for the analysis
    6. Conclusions that can be derived from the analysis
 3. Mutation Analysis
-4. Pathway Analysis 
-5. Literary Analysis 
-6. Knowledge Graphs
+## test
+5. Pathway Analysis 
+6. Literary Analysis 
+7. Knowledge Graphs
 
