@@ -9,8 +9,16 @@ Types of Analysis:
    5. Algorithms and tests required for the analysis
    6. Conclusions that can be derived from the analysis
 3. Mutation Analysis
-## test
-5. Pathway Analysis 
-6. Literary Analysis 
-7. Knowledge Graphs
+5. Pathway Analysis
+   - What is PA?
+   - Why is it important?
+   - Overview of existing methods and workflow
+   - Datatypes, formats, platforms
+   - Python packages
+   - Algorithms employed 
+   - Conclusions
+   - Useful resources
+   - References
+7. Literary Analysis 
+8. Knowledge Graphs
 
