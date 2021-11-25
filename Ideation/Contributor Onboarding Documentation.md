@@ -88,8 +88,20 @@ Mutational Analysis is testing for the presence of a specific mutation or set of
 
 iii) Packages used in the analysis
 
-a) [DeepVarient](https://github.com/google/deepvariant#how-deepvariant-works) [Python]: An analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data.
+a) [DeepVarient](https://github.com/google/deepvariant#how-deepvariant-works) [Python]: An analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data.  
+*Input:* Aligned reads  
+*Input data formats:* .fasta, .bam and .cram files  
+*Output:*  
+*Output data formats:* .vcf and .gvcf
+b) [MutaNET](https://sourceforge.net/projects/mutanet/)[Python]: It includes a next generation sequencing (NGS) pipeline that calls mutations based on paired-end NGS reads, an automated analysis tool and various file converters and mergers. The mutation analysis feature considers the coding region, protein domains, regulation and transcription factor binding site information, and can be used to analyse the potential impact of mutations on genes of interest.  
 
+iv) Existing mutation analysis services:
+
+a) [Genewiz](https://www.genewiz.com/Public/Services/Molecular-Genetics/Mutation-Analysis?sc_device=Mobile): . GENEWIZ’s Mutation Analysis service helps scientists ramp up mutation detection in coding exons, enabling scientists to quickly analyze and identify mutations that may affect the function of their gene of interest.  
+*Input*: Purified genomic DNA or biosafety level 1 (BSL1) and 2 (BSL2) supplied sources from which genomic DNA can be extracted  
+*Output*: Raw sequence data files and  report identifying mutations compared to the provided reference sequence  
+ b) [ExPecto](https://hb.flatironinstitute.org/expecto): ExPecto is a framework for ab initio sequence-based prediction of mutation gene expression effects and disease risks. , [this](https://hb.flatironinstitute.org/expecto) an explorer of tissue-specific expression effect predictions.  
+c) [DeepSea](https://hb.flatironinstitute.org/deepsea/): DeepSEA is a deep learning-based algorithmic framework for predicting the chromatin effects of sequence alterations with single nucleotide sensitivity. DeepSEA can accurately predict the epigenetic state of a sequence, including transcription factors binding, DNase I sensitivities and histone marks in multiple cell types, and further utilize this capability to predict the chromatin effects of sequence variants and prioritize regulatory variants.
 
 III) Pathway Analysis 
     
