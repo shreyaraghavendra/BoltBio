@@ -306,8 +306,87 @@ Workflow/methodology
 TCGA data was retrieved  and differential expression analysis (DEA) was performed using the TCGABiolinks package. 
 
 Data Platforms:  Gene expression data from the Genotype-Tissue EXpression (GTEX) project as control-no control for  LUSC, LAML, and DLBC, and the TCGA tumor data processed by the Recount2 project to avoid biases introduced by different RNA quantification pipelines..Taken together, we retrieved 6 datasets providing mRNA abundance for ≈15000 genes for each tumor and performed differential expression analysis. For each dataset, all genes with FDR<0.01 and logFC|>3 were considered significant.
+ANALYSES 
 
-Analysis
+GNT and GNA are based on three models:
+
+-   Direct interaction model
+
+-   Shortest path interaction model
+
+-   Random Walk with Restart (RWR) model
+
+These three interaction models capture different topological properties. Direct models provide information about the neighborhood of a gene and its observed links. However, they might not be sufficiently powered to detect mid- and long-range interactions, thus statistics defined under these models are usually sensitive to missing links. Conversely, modelling gene interactions using shortest path provides a simple analytical framework to include local and global awareness of the connectivity. However, this approach is also sensitive to missing links and small-world effects, which is common in biological networks and could lead to false positives. The RWR model is more robust than the shortest path model, because it effectively adjusts interaction effects for network structure; it rewards nodes connected with many shortest paths, and penalizes those that are connected only by path going through high degree nodes.
+
+The the strength of interaction between genes in the geneset (geneset network topology, GNT) and with genes in another geneset (geneset network association, GNA) are evaluated based on statistics using these model. 
+
+GNT Statistics:
+
+Let S=s1,...,sn be a geneset of n genes, each mapped to a node in G=(V,E). The aim is to find out whether the strength of interaction between nodes of the geneset is higher than expected by chance for a geneset of the same size.
+
+-   Total degree statistic: The importance of a geneset S can be quantified as the number of edges connecting each node in S to any other node in the network
+
+                                    ![](https://lh4.googleusercontent.com/TFBxV9JakouiKx5a1UpJZcm30tI2cJot38B2D9jIsryM76_82NAG16gkJ9yus5BbxBAi_VydD-Eogi0HfhofssBRaLnHhkD57hdpny5CqauiMDCJ381CtquDXBwMFILPF66XiDjl)
+
+-   Internal degree: With the direct interaction model, the strength of interaction for a geneset S can be quantified as the number of edges connecting each node in S to any other node in the geneset; we refer to this quantity as the internal degree of the node
+
+                                  ![](https://lh3.googleusercontent.com/sWv5p9S3ZWHEqAN23L-VEj6UQSqHK7n-9TrZuktzsuorEgVMoyZ1F1axdYG3D5CxppMKx60vVnmFUWrs62iOdGpTGLY0g_Qe8LGnGzwTP-ntX640Kq_6UTkIPTwKPB4oLCeRScWr)
+
+-   Shortest Path: The main concern regarding direct interaction methods is that they could fail in presence of missing links, which can be circumvented by shortest path method which takes into account the distance between nodes. Shortest path is the average of the minimum distance between each gene and the rest of those in S
+
+                                 ![](https://lh6.googleusercontent.com/0aAzF-yJwTV_GyQaCUti3iXS9tC9PSpB5zIukWBo-suYxs6AcOqVjpeggTJAr4y2pNtQRR3H41l9zfKQGUNzEMurSf5hMyNjQy7Ndi8kCQDKyFkepq2WJemiNO5vxfzxC7mUElIQ)
+
+-   Under a RWR model, we can consider hij∈H as the heat transferred from node i to node j, which can be used as a measure of interaction strength between the nodes in the geneset S, as follows:
+
+                               ![](https://lh3.googleusercontent.com/R29kXbSK4gGjzcTDGOrv5vZX9vPOlv5LNjqBDh7cAyNZt4JJm2vpi6PgCiCP89SyjSg3EDjQWnfVm36MOoM2AqKzbNfRMK0zV6JxI9hknWgqDrUxkNLs0LwNmDOlDXP3KchLOPrh)
+
+Geneset network association statistics
+
+Let S1 and S2 be two geneset with n and m genes respectively, we want to estimate the association between S1 and S2 as a function of the strength of interaction between their nodes.
+
+Under a shortest path model, the association statistics USP is defined as follows:
+
+Whereas, under a RWR model, we measure association as a function of the heat, UH, transferred between the two genesets as follows:
+
+                  ![](https://lh4.googleusercontent.com/pNFrWarxqb1BktJC4aWQCBtDERjy0DshwL03xuSeeanyFcNeGjuixsXbQtnyoZZsTqtqVOvz4zqf_CQaKYuzwlRczG9XFADGZ1bXnUXgN7xcxBC5Zga6wC9FccWHZuoPGsrMFTKQ)
+
+Where the heat withheld by a gene is considered when there are overlapping genes between S1 and S2.
+
+                                 ![](https://lh6.googleusercontent.com/9WUqYLEtoYJjwofcsQPPfIPv0xlfGsmODfhA7ETtZmtQ0ZewVP_oOnmwBmmTaQd2a0lTchhJtSuDcqoQ2nL1--UqAe866plxRMfNHI88Eg1KOBQIbPTznpyi-Hw4Q48OgiwGxYzl)
+
+Hypothesis Testing
+
+The topological and association statistics are ultimately used for hypothesis testing. A calibrated null distribution is needed to estimate whether the observed statistics are more extreme than what expected by chance using which, a bootstrap procedure is used to estimate null distributions of the test statistics, conditioned on the geneset size.
+
+Thus, w.l.o.g, let Q be the null distribution of the test statistic q estimated for a geneset of size n, and ![](https://lh4.googleusercontent.com/XJeK67eNboaq0tH-m5YCWtbET8SYrlDwEE559PatIXDWxggXY3WwwJPgagrYaRvQECK60wSYx5sPIO_PTjRAtNy9dvx51BEQ1Kaa-B8ObW4yU3agKvjWESljd9pArBnCAGtuEEdv) the observed value. It is possible to derive an empirical p-value as follows:
+
+                         ![](https://lh6.googleusercontent.com/dU4jhvcZn0hQBFLBkB50iFBS_OVim_dfuZz8pqUPAMrejNFxl7lqcK3ques3HUgqlcPVcUb8soPwDMlQwZwXuxjNKdzf1axvkfcCwEVbrBTqdqBYjRDt5fF-n7fqTBM0ULZ7Enj8)
+
+where I is the indicator function returning 1 if and only if the evaluated condition is true, and unit pseudo-count is added for continuity correction.
+
+Benchmarking geneset network tests                  
+
+Stochastic block models (SBM) was used for both GNA and GNT. 
+
+SBM framework is used to simulate a network with k blocks, with a baseline probability of interaction within and between blocks, p0.
+
+GNT:  k+<k blocks from the SBM matrix are selected  and set their within probability of connection M+ii = αp0, where α>1 is a scaling factor controlling the strength of interaction of the genes within block i compared to the rest of the genes in any other block.
+
+GNA: k+  blocks are selected at random and set their within block connection probability to M+ii=αp0 and their between blocks connection to M+ij=γp0 for i≠j and α,γ>1. γ  was reparameterized as a function α, in order to control the relationship between the within and between block connection probability. 
+
+Let β=γ/(α-1), the between block connection probability can be set as M+ij=p0+βp0(α-1). With this parametrization, 3 different scenarios can be simulated:
+
+1)if β=0⇒M+ij=p0, the connection probability between blocks is equal to the baseline, thus genes in a block are highly connected.
+
+2)if 0<β<1⇒p0<M+ij<M+ii, then the connection probability between the blocks is higher than the baseline, and thus we obtain assortative genesets.
+
+3)if β>1⇒M+ij>M+ii, then we have non assortative genesets, thus we expect them to be detected by a GNA test.
+
+After building a network, genesets can be generated by selecting two distinct blocks, i, j, with m nodes each, and add π×m nodes from block i and (1-π)×m nodes from block j; for simplicity, we picked genes from blocks containing the same number of genes. 
+
+By varying the size of highly connected blocks and their interaction probability, along with the geneset composition, it is possible to assess the true positive rate (TPR) and false positive rate (FPR) of both GNT and GNA tests.    
+
+USE CASE
 
 PyGNA was used to perform GNT analysis and GNA analysis between all cancer datasets, using the BioGRID interaction network.
 
