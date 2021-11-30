@@ -90,25 +90,12 @@ iii) Packages used in the analysis
 
 a) [DeepVarient](https://github.com/google/deepvariant#how-deepvariant-works) [Python and C++]: An analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data.  
 
-PIPELINE 
+*Pipeline:* 
 1. Make examples: creates tf.Example protos for training/calling
 2. Call Variants: calling variants with a trained DeepVariant model 
 3. Post process variants: Postprocess output from call_variants to produce a VCF file
 
-*Input:* Aligned reads from:  
-*   NGS (Illumina) data for either a
-    [whole genome](docs/deepvariant-case-study.md) or
-    [whole exome](docs/deepvariant-exome-case-study.md).
-*   PacBio HiFi data, see the
-    [PacBio case study](docs/deepvariant-pacbio-model-case-study.md).
-*   Hybrid PacBio HiFi + Illumina WGS, see the
-    [hybrid case study](docs/deepvariant-hybrid-case-study.md).
-*   Oxford Nanopore long-read data by using
-    [PEPPER-DeepVariant](https://github.com/kishwarshafin/pepper).
-*   GenapSys data, by using a
-    [model retrained by GenapSys](https://github.com/GenapsysInc/genapsys_deepvariant/blob/master/docs/GenapSys_DeepVariant_WES_Model.md).
-
-*Input data formats:* 
+*Input:* 
 1.  A reference genome in [FASTA](https://en.wikipedia.org/wiki/FASTA_format)
     format and its corresponding
     [.fai index file](http://www.htslib.org/doc/faidx.html) generated using the
@@ -117,20 +104,54 @@ PIPELINE
 2.  An aligned reads file in [BAM](http://genome.sph.umich.edu/wiki/BAM) or [CRAM] format
     and its corresponding index file (.bai). The reads must be aligned to the
     reference genome described above.
+    
+*Different input types and their corresponding models:*  
+
+Aligned reads from:  
+*   NGS (Illumina) data for either a
+    [whole genome](docs/deepvariant-case-study.md) (WGS model) or [whole exome](docs/deepvariant-exome-case-study.md) (WES model).
+*   PacBio HiFi data (PACBIO model) , see the
+    [PacBio case study](docs/deepvariant-pacbio-model-case-study.md).
+*   Hybrid PacBio HiFi + Illumina WGS (HYBRID model), see the
+    [hybrid case study](docs/deepvariant-hybrid-case-study.md).
+*   Oxford Nanopore long-read data by using
+    [PEPPER-DeepVariant](https://github.com/kishwarshafin/pepper).
+*   GenapSys data, by using a
+    [model retrained by GenapSys](https://github.com/GenapsysInc/genapsys_deepvariant/blob/master/docs/GenapSys_DeepVariant_WES_Model.md).
 
 *Output:*  
+1. A list of all variant calls in VCF format or the [gVCF format](https://github.com/google/deepvariant/blob/r1.2/docs/deepvariant-gvcf-support.md#creating-gvcf-output-with-deepvariant) . 
+2. An [VCF stats report](https://github.com/google/deepvariant/blob/r1.2/docs/deepvariant-vcf-stats-report.md) as a .html file
 
-*Output data formats:* .vcf and .gvcf
+b) [DeepTrio](https://github.com/google/deepvariant/blob/r1.2/docs/deeptrio-details.md): DeepTrio is built on top of DeepVariant. It is intended for variant calling of trios or duos. The main advantage of DeepTrio is that genetic inheritance is considered by a neural network for calling variants in trio samples. Also, variant candidates are generated from all samples at once, which ensures a genotype call is made for any position in the trio with a variant.  
 
-b) [DeepTrio](https://github.com/google/deepvariant/blob/r1.2/docs/deeptrio-details.md):  
+*Pipeline (Same as DeepVariant):*
+1. Make examples: creates tf.Example protos for training/calling
+2. Call Variants: calling variants with a trained DeepVariant model 
+3. Post process variants: Postprocess output from call_variants to produce a VCF file
 
-c) [BayesPI-BAR2](https://junbaiw.github.io/BayesPI-BAR2/): BayesPI-BAR2 is a package designed to predict how non-coding somatic mutations in cancer samples affect protein-DNA binding at the mutated place. Changes in binding of transcription factors to mutated regulatory sequences can lead to disrupted gene regulation, which may promote tumorigenesis. BayesPI-BAR2 takes into account the possibility for several nearby mutations to affect binding of the same protein. The predicted effects are tested for significance in the given patient cohort, and only those that appear in patient samples more frequently than expected by chance are reported.
+*Input:*  
+1. A reference genome in FASTA format and its corresponding .fai index file generated using the samtools faidx command.
+2. An aligned reads files for child and one or two parents in BAM format and its corresponding index file (.bai). The reads must be aligned to the reference genome described above.
 
-d) [seqfam](https://seqfam.readthedocs.io/en/latest/tutorial_and_api.html): 
+*Different input data types and their corresponding models:*
 
-d) [MutaNET](https://sourceforge.net/projects/mutanet/)[Python]: It includes a next generation sequencing (NGS) pipeline that calls mutations based on paired-end NGS reads, an automated analysis tool and various file converters and mergers. The mutation analysis feature considers the coding region, protein domains, regulation and transcription factor binding site information, and can be used to analyse the potential impact of mutations on genes of interest.  
+*  Illumina whole genome data (WGS).
+*  Illumina whole exome data (WES).
+*  PacBio HiFi whole genome data (PacBio WGS).
 
-iv) Existing mutation analysis services:
+*Output:*
+A set of variants in VCF format representing the child and one or two parents.
+
+c) [BayesPI-BAR2](https://junbaiw.github.io/BayesPI-BAR2/) [Python]: BayesPI-BAR2 is a package designed to predict how non-coding somatic mutations in cancer samples affect protein-DNA binding at the mutated place. Changes in binding of transcription factors to mutated regulatory sequences can lead to disrupted gene regulation, which may promote tumorigenesis. BayesPI-BAR2 takes into account the possibility for several nearby mutations to affect binding of the same protein. The predicted effects are tested for significance in the given patient cohort, and only those that appear in patient samples more frequently than expected by chance are reported.
+
+d) [seqfam](https://seqfam.readthedocs.io/en/latest/tutorial_and_api.html): Seqfam package is primarily designed for analysing next generation sequencing (NGS) DNA data from families with known pedigree information in order to identify rare variants that are potentially causal of a disease/trait of interest.
+
+e) [MutaNET](https://sourceforge.net/projects/mutanet/) [Python]: It includes a next generation sequencing (NGS) pipeline that calls mutations based on paired-end NGS reads, an automated analysis tool and various file converters and mergers. The mutation analysis feature considers the coding region, protein domains, regulation and transcription factor binding site information, and can be used to analyse the potential impact of mutations on genes of interest.  
+
+f) [Orchid](https://academic.oup.com/bioinformatics/article/34/6/936/4587584): 
+
+iv) Existing mutation analysis tools and services:
 
 a) [Genewiz](https://www.genewiz.com/Public/Services/Molecular-Genetics/Mutation-Analysis?sc_device=Mobile): GENEWIZ’s Mutation Analysis service helps scientists ramp up mutation detection in coding exons, enabling scientists to quickly analyze and identify mutations that may affect the function of their gene of interest.  
 *Input*: Purified genomic DNA or biosafety level 1 (BSL1) and 2 (BSL2) supplied sources from which genomic DNA can be extracted  
@@ -140,10 +161,16 @@ a) [Genewiz](https://www.genewiz.com/Public/Services/Molecular-Genetics/Mutation
  
 c) [DeepSea](https://hb.flatironinstitute.org/deepsea/): DeepSEA is a deep learning-based algorithmic framework for predicting the chromatin effects of sequence alterations with single nucleotide sensitivity. DeepSEA can accurately predict the epigenetic state of a sequence, including transcription factors binding, DNase I sensitivities and histone marks in multiple cell types, and further utilize this capability to predict the chromatin effects of sequence variants and prioritize regulatory variants.
 
-III) Pathway Analysis 
-    
-  
+v) Databases 
 
+a) [Protein Data Bank](https://www.rcsb.org/#Category-welcome)  
+b) [GenBank](https://www.ncbi.nlm.nih.gov/genbank/)  
+c) [Online Mendelian Inheritance in Man (OMIM)](https://www.omim.org/#)  
+d) [The Human Gene Mutation Database (HGMD)](http://www.hgmd.cf.ac.uk/ac/index.php)  
+e) [The International Genome Sample Resource (IGSR)](https://www.internationalgenome.org/)
+
+III) Pathway Analysis 
+  
 IV) Literary Analysis 
 
 V) Knowledge Graphs
