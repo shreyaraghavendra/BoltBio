@@ -149,7 +149,9 @@ d) [seqfam](https://seqfam.readthedocs.io/en/latest/tutorial_and_api.html): Seqf
 
 e) [MutaNET](https://sourceforge.net/projects/mutanet/) [Python]: It includes a next generation sequencing (NGS) pipeline that calls mutations based on paired-end NGS reads, an automated analysis tool and various file converters and mergers. The mutation analysis feature considers the coding region, protein domains, regulation and transcription factor binding site information, and can be used to analyse the potential impact of mutations on genes of interest.  
 
-f) [Orchid](https://academic.oup.com/bioinformatics/article/34/6/936/4587584): 
+f) [Orchid](https://academic.oup.com/bioinformatics/article/34/6/936/4587584): Orchid is a python based software package for the management, annotation and machine learning of cancer mutations.
+
+g) [
 
 iv) Existing mutation analysis tools and services:
 
@@ -157,7 +159,7 @@ a) [Genewiz](https://www.genewiz.com/Public/Services/Molecular-Genetics/Mutation
 *Input*: Purified genomic DNA or biosafety level 1 (BSL1) and 2 (BSL2) supplied sources from which genomic DNA can be extracted  
 *Output*: Raw sequence data files and  report identifying mutations compared to the provided reference sequence  
 
- b) [ExPecto](https://hb.flatironinstitute.org/expecto): ExPecto is a framework for ab initio sequence-based prediction of mutation gene expression effects and disease risks. , [this](https://hb.flatironinstitute.org/expecto) an explorer of tissue-specific expression effect predictions. 
+ b) [ExPecto](https://hb.flatironinstitute.org/expecto): ExPecto is a framework for ab initio sequence-based prediction of mutation gene expression effects and disease risks , [this](https://hb.flatironinstitute.org/expecto) is an explorer of tissue-specific expression effect predictions. 
  
 c) [DeepSea](https://hb.flatironinstitute.org/deepsea/): DeepSEA is a deep learning-based algorithmic framework for predicting the chromatin effects of sequence alterations with single nucleotide sensitivity. DeepSEA can accurately predict the epigenetic state of a sequence, including transcription factors binding, DNase I sensitivities and histone marks in multiple cell types, and further utilize this capability to predict the chromatin effects of sequence variants and prioritize regulatory variants.
 
@@ -168,6 +170,8 @@ b) [GenBank](https://www.ncbi.nlm.nih.gov/genbank/)
 c) [Online Mendelian Inheritance in Man (OMIM)](https://www.omim.org/#)  
 d) [The Human Gene Mutation Database (HGMD)](http://www.hgmd.cf.ac.uk/ac/index.php)  
 e) [The International Genome Sample Resource (IGSR)](https://www.internationalgenome.org/)
+f) [dbSNP](https://www.ncbi.nlm.nih.gov/snp/)
+g) [ENCODE](https://www.genome.gov/Funded-Programs-Projects/ENCODE-Project-ENCyclopedia-Of-DNA-Elements)
 
 III) Pathway Analysis 
   
