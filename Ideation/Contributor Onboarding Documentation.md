@@ -32,7 +32,7 @@ Types of Analysis:
       https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6147084/  
 
    a) https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5925605/  
-   b) https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0061214&type=printable  
+   b) https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3620319/
    c) https://github.com/Christensen-Lab-Dartmouth/PyMethylProcess  
    d) https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02220-y  
    e) https://cancerdiscovery.aacrjournals.org/content/11/9/2266  
