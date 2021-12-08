@@ -173,6 +173,18 @@ e) [The International Genome Sample Resource (IGSR)](https://www.internationalge
 f) [dbSNP](https://www.ncbi.nlm.nih.gov/snp/)
 g) [ENCODE](https://www.genome.gov/Funded-Programs-Projects/ENCODE-Project-ENCyclopedia-Of-DNA-Elements)
 
+vi) Annotation Databases:
+
+vii) File formats used in mutational analysis:
+
+a) [BED](https://www.youtube.com/watch?v=uZZ2pHsATCo): The BED (Browser Extensible Data) format is a text file format used to store genomic regions as coordinates and associated annotations. The data are presented in the form of columns separated by spaces or tabs.  
+b) [SAM/BAM](https://www.youtube.com/watch?v=tADZk2GsEaE&t=1s): SAM stands for Sequence Alignment/Map format. It is a TAB-delimited text format consisting of a header section, which is optional, and an alignment section.  
+c) [Fastq](https://www.youtube.com/watch?v=SZ6suqu-eLA): FASTQ format is a text-based format for storing both a biological sequence (usually nucleotide sequence) and its corresponding quality scores. Both the sequence letter and quality score are each encoded with a single ASCII character for brevity.  
+d) [Fasta](https://www.youtube.com/watch?v=cJm_BGpjnWg): FASTA format is a text-based format for representing either nucleotide sequences or peptide sequences, in which base pairs or amino acids are represented using single-letter codes. A sequence in FASTA format begins with a single-line description, followed by lines of sequence data.  
+e) [VCF](https://www.youtube.com/watch?v=Qgb4Ja5VnUQ) VCF stands for Variant Call Format. It is a standardized text file format used for representing SNP, indel, and structural variation calls.
+
+For more information refer [here](http://samtools.github.io/hts-specs/).
+
 III) Pathway Analysis 
   
 IV) Literary Analysis 
