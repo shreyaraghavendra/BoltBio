@@ -151,7 +151,7 @@ e) [MutaNET](https://sourceforge.net/projects/mutanet/) [Python]: It includes a 
 
 f) [Orchid](https://academic.oup.com/bioinformatics/article/34/6/936/4587584): Orchid is a python based software package for the management, annotation and machine learning of cancer mutations.
 
-- Annotation packages
+- Annotation python packages
 
 a) [Varcode](https://pypi.org/project/varcode/)  
 b) [Viral-ngs](https://viral-ngs.readthedocs.io/en/latest/index.html)  
@@ -172,8 +172,8 @@ c) [DeepSea](https://hb.flatironinstitute.org/deepsea/): DeepSEA is a deep learn
 
 v) Annotation Tools 
 
-a) [VarAFT](https://varaft.eu/): (Annotation and filtering)
-b) [Annovar](https://annovar.openbioinformatics.org/en/latest/): [Research paper explaining Annovar](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2938201/)
+a) [VarAFT](https://varaft.eu/)(Annotation and filtering): VarAFT provides experiments’ quality, annotates, and allows the filtration of VCF files. Data from multiple samples may be combined to address different Mendelian Inherited Disorders, Population Genetics or Cancers.  
+b) [Annovar](https://annovar.openbioinformatics.org/en/latest/): ANNOVAR is an efficient software tool to utilize update-to-date information to functionally annotate genetic variants detected from diverse genomes (including human genome hg18, hg19, hg38, as well as mouse, worm, fly, yeast and many others). Annovar performs gene-based, region-based and filter-based annotation. [Research paper explaining Annovar](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2938201/)
 
 vi) Databases 
 
@@ -205,6 +205,25 @@ Additional Sources:
 * [Commonly used biology terms and their definations](https://sg.idtdna.com/pages/education/decoded/article/genotyping-terms-to-know)
 * [Computational Approaches in Comparative Genomics book](https://www.ncbi.nlm.nih.gov/books/NBK20260)
 * [A survey of tools for variant analysis of next-generation genome sequencing data](https://academic.oup.com/bib/article/15/2/256/210976)
+
+Related Research papers:  
+* [KRAS mutation analysis: a comparison between primary tumours and matched liver metastases in 305 colorectal cancer patients](https://www.nature.com/articles/bjc201126)
+* [Integrative whole-genome sequence analysis reveals roles of regulatory mutations in BCL6 and BCL2 in follicular lymphoma](https://www.nature.com/articles/s41598-017-07226-4)
+* [Detection of Pathogenic Variants With Germline Genetic Testing Using Deep Learning vs Standard Methods in Patients With Prostate Cancer and Melanoma](https://jamanetwork.com/journals/jama/article-abstract/2772962)
+* [A systematic genome-wide mapping of oncogenic mutation selection during CRISPR-Cas9 genome editing](https://www.nature.com/articles/s41467-021-26788-6)
+* [A framework for detecting noncoding rare variant associations of large-scale whole-genome sequencing studies](https://www.biorxiv.org/content/10.1101/2021.11.05.467531v1.full.pdf)
+* [An active learning framework improves tumor variant interpretation](https://www.biorxiv.org/content/10.1101/2021.11.08.467747v1.full.pdf)
+* [Population aware deepVariant model](https://www.biorxiv.org/content/10.1101/2021.01.06.425550v2.full)
+* [Mutational analysis of known ALS genes in an Italian population-based cohort](https://sci-hub.mksa.top/10.1212/WNL.0000000000011209)
+* [Population genetics for target identification](https://sci-hub.mksa.top/10.1016/j.ddtec.2004.08.012)
+* [Computational Compensatory Mutation Discovery Approach: Predicting a PARP1 Variant Rescue Mutation](https://www.biorxiv.org/content/10.1101/2021.11.21.469407v1.full.pdf)
+* [A Complete Pedigree-Based Graph Workflow for Rare Candidate Variant Analysis](https://www.biorxiv.org/content/10.1101/2021.11.24.469912v1.full.pdf)
+* [A general framework for estimating the relative pathogenicity of human genetic variants](https://sci-hub.mksa.top/10.1038/ng.2892)
+* [Variant interpretation using population databases: lessons from gnomAD](https://arxiv.org/pdf/2107.11458.pdf)
+* [A survey of tools for variant analysis of next-generation genome sequencing data](https://academic.oup.com/bib/article/15/2/256/210976)
+* [HugeSeq](https://sci-hub.mksa.top/10.1038/nbt.2134)
+* [Assembly of a pan-genome from deep sequencing of 910 humans of African descent](https://www.nature.com/articles/s41588-018-0273-y)
+
 
 III) Pathway Analysis 
   
