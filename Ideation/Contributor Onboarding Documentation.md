@@ -153,10 +153,10 @@ f) [Orchid](https://academic.oup.com/bioinformatics/article/34/6/936/4587584): O
 
 - Annotation packages
 
-a) [Varcode](https://pypi.org/project/varcode/)
-b) [Viral-ngs](https://viral-ngs.readthedocs.io/en/latest/index.html)
-c) [Gvanno](https://github.com/sigven/gvanno)
-d) [Renovo](https://github.com/mazzalab-ieo/renovo)
+a) [Varcode](https://pypi.org/project/varcode/)  
+b) [Viral-ngs](https://viral-ngs.readthedocs.io/en/latest/index.html)  
+c) [Gvanno](https://github.com/sigven/gvanno)  
+d) [Renovo](https://github.com/mazzalab-ieo/renovo)  
 e) [VAPr](https://sci-hub.mksa.top/10.1093/bioinformatics/bty192)
 
 
