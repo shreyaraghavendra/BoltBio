@@ -2,7 +2,7 @@
 
 Types of Analysis:  
 
-I) Differential gene analyis</dt>     
+I) Differential gene analyis    
    1. What is differential gene analysis?
    2. Which kind of data does it require?
    3. Which data formats are used to store the data used in the analysis?
@@ -151,7 +151,14 @@ e) [MutaNET](https://sourceforge.net/projects/mutanet/) [Python]: It includes a 
 
 f) [Orchid](https://academic.oup.com/bioinformatics/article/34/6/936/4587584): Orchid is a python based software package for the management, annotation and machine learning of cancer mutations.
 
-g) [
+- Annotation packages
+
+a) [Varcode](https://pypi.org/project/varcode/)
+b) [Viral-ngs](https://viral-ngs.readthedocs.io/en/latest/index.html)
+c) [Gvanno](https://github.com/sigven/gvanno)
+d) [Renovo](https://github.com/mazzalab-ieo/renovo)
+e) [VAPr](https://sci-hub.mksa.top/10.1093/bioinformatics/bty192)
+
 
 iv) Existing mutation analysis tools and services:
 
@@ -163,7 +170,12 @@ a) [Genewiz](https://www.genewiz.com/Public/Services/Molecular-Genetics/Mutation
  
 c) [DeepSea](https://hb.flatironinstitute.org/deepsea/): DeepSEA is a deep learning-based algorithmic framework for predicting the chromatin effects of sequence alterations with single nucleotide sensitivity. DeepSEA can accurately predict the epigenetic state of a sequence, including transcription factors binding, DNase I sensitivities and histone marks in multiple cell types, and further utilize this capability to predict the chromatin effects of sequence variants and prioritize regulatory variants.
 
-v) Databases 
+v) Annotation Tools 
+
+a) [VarAFT](https://varaft.eu/): (Annotation and filtering)
+b) [Annovar](https://annovar.openbioinformatics.org/en/latest/): [Research paper explaining Annovar](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2938201/)
+
+vi) Databases 
 
 a) [Protein Data Bank](https://www.rcsb.org/#Category-welcome)  
 b) [GenBank](https://www.ncbi.nlm.nih.gov/genbank/)  
@@ -173,17 +185,26 @@ e) [The International Genome Sample Resource (IGSR)](https://www.internationalge
 f) [dbSNP](https://www.ncbi.nlm.nih.gov/snp/)
 g) [ENCODE](https://www.genome.gov/Funded-Programs-Projects/ENCODE-Project-ENCyclopedia-Of-DNA-Elements)
 
-vi) Annotation Databases:
+vii) Annotation Databases:
 
-vii) File formats used in mutational analysis:
+a) [Ensembl site](http://www.ensembl.org)  
+b) [NCBI](http://www.ncbi.nlm.nih.gov)  
+c) [UCSC Genome browser](http://genome.cse.ucsc.edu)  
+d) [gnomAD](https://gnomad.broadinstitute.org/)
+
+viii) File formats used in mutational analysis:
 
 a) [BED](https://www.youtube.com/watch?v=uZZ2pHsATCo): The BED (Browser Extensible Data) format is a text file format used to store genomic regions as coordinates and associated annotations. The data are presented in the form of columns separated by spaces or tabs.  
 b) [SAM/BAM](https://www.youtube.com/watch?v=tADZk2GsEaE&t=1s): SAM stands for Sequence Alignment/Map format. It is a TAB-delimited text format consisting of a header section, which is optional, and an alignment section.  
 c) [Fastq](https://www.youtube.com/watch?v=SZ6suqu-eLA): FASTQ format is a text-based format for storing both a biological sequence (usually nucleotide sequence) and its corresponding quality scores. Both the sequence letter and quality score are each encoded with a single ASCII character for brevity.  
 d) [Fasta](https://www.youtube.com/watch?v=cJm_BGpjnWg): FASTA format is a text-based format for representing either nucleotide sequences or peptide sequences, in which base pairs or amino acids are represented using single-letter codes. A sequence in FASTA format begins with a single-line description, followed by lines of sequence data.  
 e) [VCF](https://www.youtube.com/watch?v=Qgb4Ja5VnUQ) VCF stands for Variant Call Format. It is a standardized text file format used for representing SNP, indel, and structural variation calls.
-
 For more information refer [here](http://samtools.github.io/hts-specs/).
+
+Additional Sources:
+* [Commonly used biology terms and their definations](https://sg.idtdna.com/pages/education/decoded/article/genotyping-terms-to-know)
+* [Computational Approaches in Comparative Genomics book](https://www.ncbi.nlm.nih.gov/books/NBK20260
+* [A survey of tools for variant analysis of next-generation genome sequencing data](https://academic.oup.com/bib/article/15/2/256/210976)
 
 III) Pathway Analysis 
   
