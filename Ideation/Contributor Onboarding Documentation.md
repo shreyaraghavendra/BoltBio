@@ -226,8 +226,8 @@ Related Research papers:
 
 
 III) Pathway Analysis  
-IV) Literary Analysis
-V) Knowledge Graphs
+IV) Literary Analysis  
+V) Knowledge Graphs  
 VI) Biological Network Datasets    
 
   These contain graphs with gene/protein/disease/drug interactions:  
@@ -248,14 +248,14 @@ VII) Methylation Analysis
       https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6147084/  
       
    _Epigenetic deregulation:_  
-	Most human protein-coding genes harbor multiple transcription starting sites. Promoter regions near these sites regulate transcription and transcript isoforms (multiple combinations of exons within introns translate to different proteins). Tumor-causing methylation in promoter regions can use this mechanism to activate oncogenes/ reduce tumor suppressor genes. Similar to CNA, methylation alteration at gene promoters typically does not alter the coding sequences of 
+   Most human protein-coding genes harbor multiple transcription starting sites. Promoter regions near these sites regulate transcription and transcript isoforms (multiple combinations of exons within introns translate to different proteins). Tumor-causing methylation in promoter regions can use this mechanism to activate oncogenes/ reduce tumor suppressor genes. Similar to CNA, methylation alteration at gene promoters typically does not alter the coding sequences of 
 genes, but contributes to cancer by influencing gene expression. 
 
-	DNAme is also thought to be an important disease-defining feature in many cancers, pointing to the cancer's cell of origin and predictive of the outcome. DNAme changes in cancer have been described along two principal axes: global hypomethylation affecting retroviral elements and genome stability, and focal hypermethylation at promoters of tumor suppressor genes.
+   DNAme is also thought to be an important disease-defining feature in many cancers, pointing to the cancer's cell of origin and predictive of the outcome. DNAme changes in cancer have been described along two principal axes: global hypomethylation affecting retroviral elements and genome stability, and focal hypermethylation at promoters of tumor suppressor genes.
 
-	Promoter hypermethylation of TSGs has been surveyed across cancer in TCGA and other studies : DNA repair (MLH1, RBBP8), cell cycle (CDKN2A, CDKN2B), p53 network (CDKN2A, TP73), apoptosis (WIF1, SFRP1), Ras signaling (RASSF1), Wnt signaling (SOX17), and tyrosine kinase cascades (SOCS3).
+   Promoter hypermethylation of TSGs has been surveyed across cancer in TCGA and other studies : DNA repair (MLH1, RBBP8), cell cycle (CDKN2A, CDKN2B), p53 network (CDKN2A, TP73), apoptosis (WIF1, SFRP1), Ras signaling (RASSF1), Wnt signaling (SOX17), and tyrosine kinase cascades (SOCS3).
 
-	Measuring genome-wide DNAm in large numbers of specimens typically uses microarray-based technologies such as the Illumina HumanMethylation450 (450 K) and HumanMethylationEPIC (850 K) [14] arrays, which yield an approximation to the proportion of DNA copies that are methylated at each specific cytosine locus, and are reported as beta values.
+   Measuring genome-wide DNAm in large numbers of specimens typically uses microarray-based technologies such as the Illumina HumanMethylation450 (450 K) and HumanMethylationEPIC (850 K) [14] arrays, which yield an approximation to the proportion of DNA copies that are methylated at each specific cytosine locus, and are reported as beta values.
 
 
    a) https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5925605/  
