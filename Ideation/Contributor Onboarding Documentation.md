@@ -226,9 +226,8 @@ Related Research papers:
 
 
 III) Pathway Analysis 
-PATHWAY ANALYSIS
 
-OVERVIEW
+i) Overview
 
 High-throughput technologies have made it possible to measure gene expression levels of tens of thousands of genes and to compare the gene expression profiles between two phenotypes(disease vs. control, drug A vs. drug B). Various statistical approaches are used to identify the genes which are differentially expressed (DE) between these phenotypes, such as t test, Z-score, and ANOVA. Although such lists of genes provide valuable information regarding the changes across phenotypes, and play important roles in the downstream analysis, further analysis is required as they don't explain the complex mechanisms that are involved in the given condition[1].
 
@@ -266,7 +265,7 @@ In considering the pathways as simple un-ordered and unstructured collection of 
 
 The data formats and availability, web-based tools and softwares,  Python packages, and algorithms are discussed in detail in the respective sections.
 
-DATA TYPES AND FORMATS
+ii) Data Types and Formats
 
 Pathway analysis approach typically requires two types of input: experimental data and known biological networks. Most pathway analysis methods analyze data from high-throughput experiments, such as microarrays, next-generation sequencing, or proteomics. They accept either a list of gene IDs or a list of such gene IDs associated with measured changes. These changes could be measured with different technologies and therefore can serve as proxies for different biochemical entities.Biological networks or pathways are often represented in the form of graphs that capture our current knowledge about the interactions of genes, proteins, metabolites, or compounds in an organism.
 
@@ -320,7 +319,7 @@ GSEA Data Types and Format: The supporting file formats are listed below:
 
 [5.1 RNK: Ranked list file format (*.rnk)](https://software.broadinstitute.org/cancer/software/gsea/wiki/index.php/Data_formats#RNK:_Ranked_list_file_format_.28.2A.rnk.29)
 
-DATABASES, WEB-BASED TOOLS, AND SOFTWARES
+iii) Databases, Web-based tools and Softwares
 
 [KEGG](https://www.genome.jp/kegg/pathway.html):KEGG PATHWAY is a collection of manually drawn pathway maps representing our knowledge of the molecular interaction, reaction and relation networks for:
 
@@ -376,7 +375,7 @@ Additional Resources:
 
 2.  Statistical methods and user-friendly software tools to analyze these multi-omics data:<http://conesalab.org/>
 
-PYTHON PACKAGES 
+iv) Python Packages 
 
 [Python Geneset Network Analysis (PyGNA)](http://github.com/stracquadaniolab/pygna):A tool for network-aware geneset analysis. PyGNA can either be readily used and easily integrated into existing high-performance data analysis pipelines or as a Python package to implement new tests and analyses. With the increasing availability of population-scale omic data, PyGNA provides a viable approach for large scale geneset network analysis[3]
 
@@ -447,9 +446,10 @@ PYTHON PACKAGES
   </tr>
 </tbody>
 </table>
-ALGORITHMS AND TESTS
 
-### Non-TopologyBased (TB) pathway analysis methods
+v) Algorithms and Tests
+
+**Non-TopologyBased (TB) pathway analysis methods**
 
 1.  Fisher's exact (FE) test 
 
@@ -463,7 +463,7 @@ ALGORITHMS AND TESTS
 
 6.  PADOG
 
-### TB pathway analysis methods
+**TB pathway analysis methods**
 
 1.  Impact analysis 
 
