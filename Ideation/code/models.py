@@ -242,7 +242,7 @@ class VAE(nn.Module):
 
             
 
-            encoder = (torch.cat([g.ndata['feat'][i] for i in g.ndata['feat'].keys()], 0), e_emb)
+            encoder = [g.ndata['feat'], e_emb]
             
             feats = []
             embs = []

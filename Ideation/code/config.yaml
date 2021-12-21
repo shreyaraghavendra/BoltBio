@@ -19,3 +19,4 @@ pretrain_steps : 100
 decode :
   thresh : 0.505
 lr : 1.0e-2
+weight_decay : 0

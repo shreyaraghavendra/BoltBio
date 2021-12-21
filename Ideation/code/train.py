@@ -74,7 +74,7 @@ class EmbCriterion():
 
             bce_loss = self.bce(logits.float(), label)
 
-            total_loss = bce_loss + contrast_loss
+            total_loss = 10 * bce_loss + contrast_loss
 
             return {'loss' : total_loss, 'node_loss' : contrast_loss, 'relation_loss' : bce_loss}
 
@@ -91,16 +91,16 @@ class LinkCriterion():
         self.mse = torch.nn.MSELoss()
         self.bce_loss = torch.nn.BCEWithLogitsLoss()
         self.kl = torch.nn.KLDivLoss(log_target=True)
-        self.f1 = torchmetrics.F1(threshold=0.0505)
-        self.roc = torchmetrics.AUROC()
+        self.f1 = torchmetrics.F1(threshold=0.505)
+        #self.roc = torchmetrics.AUROC()
 
     def __call__(self, gt, encoder, n_feat, e_feat, graph):
 
         e_feat = e_feat[self.relevant]
-        
-        loss_stats = self.emb_crit(n_feat, e_feat, graph) 
+ 
+        loss_stats = self.emb_crit(gt[0], gt[1][self.relevant], graph) 
 
-     
+        gt[0] = torch.cat([gt[0][i] for i in gt[0].keys()], 0)
 
         n_types, feat = list(n_feat.keys()), list(n_feat.values())
         lens = [i.shape[0] for i in feat] 
@@ -120,10 +120,12 @@ class LinkCriterion():
 
         link_loss = self.bce_loss(logits, labels)
 
-        f1 = self.f1(logits.cpu(), labels.long().cpu())
-        auroc = self.roc(logits.cpu(), labels.long().cpu())
+        del labels
 
-        del logits, labels
+        # f1 = self.f1(logits.cpu(), self.labels.long())
+        # auroc = self.roc(logits.cpu(), self.labels.long())
+
+        del logits
 
         nodes, edges = encoder
 
@@ -131,14 +133,14 @@ class LinkCriterion():
 
         kl_loss = self.kl(nodes, torch.normal(0, 1, nodes.shape).to(nodes.device)) + self.kl(edges, torch.normal(0, 1, edges.shape).to(edges.device))
 
-        loss = kl_loss + reconstruction_loss + 0.01 * loss_stats['loss'] + link_loss
+        loss = 0.01 * kl_loss + 100 * reconstruction_loss + 0.01 * loss_stats['loss'] + 100 * link_loss
 
         loss_stats['kl_loss'] = kl_loss
         loss_stats['reconstruction_loss'] = reconstruction_loss
         loss_stats['link_loss'] = link_loss
         loss_stats['loss'] = loss
-        loss_stats['f1'] = f1
-        loss_stats['auroc'] = auroc
+        #loss_stats['f1'] = f1
+        #loss_stats['auroc'] = auroc
 
         return loss_stats
 
@@ -146,7 +148,7 @@ class decode_output():
     
     def __init__(self, removed, vae_edge_dict, names, identifiers, actual_link_labels, thresh, relevant,  **kwargs):
 
-        self.removed = removed
+        self.removed = removed.numpy()
         self.edge_dict = vae_edge_dict
         self.names = names
         self.identifiers = identifiers
@@ -154,6 +156,8 @@ class decode_output():
         self.labels = actual_link_labels.long()
         self.accuracy = torchmetrics.Accuracy()
         self.f1 = torchmetrics.F1()
+        self.precision = torchmetrics.Precision()
+        self.recall = torchmetrics.Recall()
         self.relevant = relevant
 
     def __call__(self, n_feat, e_feat, graph):
@@ -171,17 +175,21 @@ class decode_output():
         pred = (torch.sigmoid((((src[:, None, :] * e_feat[None, :, :])).view(-1, dim) @ dst.permute(1, 0) ).view(lens[0], len(e_feat), lens[1]).permute(1, 0, 2)) > self.thresh).long().cpu()
 
         ids = torch.stack(torch.where(pred == 1), 0).T
-
+    
         pred = pred.flatten()
 
         accuracy = self.accuracy(pred, self.labels)
         f1 = self.f1(pred, self.labels)
+        precision = self.precision(pred, self.labels)
+        recall = self.recall(pred, self.labels)
+
+        del pred
 
         c = 0
 
-        for i in self.removed:
-            if i in ids:
-                c += 1
+        ids = ids.numpy()
+        
+        c = np.array([x for x in set(tuple(x) for x in ids) & set(tuple(x) for x in self.removed)]).shape[0]
 
         new_accuracy = c/len(self.removed)
 
@@ -206,7 +214,7 @@ class decode_output():
             temp = [r_name, name1, name2, identifiers1, identifiers2]
             data += [temp]
 
-        return {'f1' : f1, 'accuracy' : accuracy, 'new_accuracy' : torch.tensor([new_accuracy]), 'data' : data}
+        return {'f1' : f1, 'accuracy' : accuracy, 'new_accuracy' : torch.tensor([new_accuracy]), 'data' : data, 'precision' : precision, 'recall' : recall}
 
 class Trainer():
 
@@ -249,7 +257,7 @@ class Trainer():
         
         self.main_thread = True
         
-        self.optim = torch.optim.Adam(self.model.parameters(), lr=self.config['lr'], weight_decay=0, betas=(0.9, 0.999))
+        self.optim = torch.optim.Adam(self.model.parameters(), lr=self.config['lr'], weight_decay=self.config['weight_decay'], betas=(0.9, 0.999))
         self.sched = torch.optim.lr_scheduler.StepLR(self.optim, step_size=40, gamma=0.7)
     
         if self.main_thread:
@@ -317,7 +325,7 @@ class Trainer():
                 if self.log_wandb:
                     metrics["train step"] = self.train_steps
                     wandb.log(metrics)
-            pbar(i/self.config['steps'], msg=self.metric_meter.msg())
+            pbar(i/self.config['pretrain_steps'], msg=self.metric_meter.msg())
 
             self.train_steps += 1
 
@@ -381,7 +389,7 @@ class Trainer():
         return loss_stats['data']
         
     def run(self):
-        best_train_loss, best_val_accuracy = float("inf"), 0
+        best_train_loss, best_val_accuracy, best_best_val_accuracy = float("inf"), 0, 0
 
         self.metric_meter.reset()
 
@@ -424,6 +432,7 @@ class Trainer():
                     data = self.val_link()
 
                     val_accuracy = self.metric_meter.get()["val accuracy"]
+                    best_accuracy = self.metric_meter.get()["val new_accuracy"]
 
                     if self.log_wandb:
                         wandb.log({"predictions" : wandb.Table(data = data, columns = ['edge_type', 'node_1_name', 'node_2_name', 'node_1_identifier', 'node_2_identifier'])})
@@ -444,18 +453,20 @@ class Trainer():
                             + "\033[0m"
                         )
                         best_val_accuracy = val_accuracy
-                        if self.log_wandb:
-                            wandb.log(
-                                {
-                                    "best_accuracy": self.metric_meter.get()["val new_accuracy"],
-                                }
-                            )
-
-
-                        torch.save(
-                                self.model.state_dict(),
-                                    os.path.join(self.out_dir, "best.ckpt"),
+                        if best_accuracy > best_best_val_accuracy:
+                            if self.log_wandb:
+                                wandb.log(
+                                    {
+                                        "best_accuracy": best_accuracy,
+                                    }
                                 )
+                            best_best_val_accuracy = best_accuracy
+
+
+                            torch.save(
+                                    self.model.state_dict(),
+                                        os.path.join(self.out_dir, "best.ckpt"),
+                                    )
                 torch.save(
                     {
                         "model": self.model.state_dict(),
@@ -510,6 +521,8 @@ if __name__ == "__main__":
     trainer = Trainer(config, pretrain = True) 
     trainer.run()
     config['encoder_save'] = f"{config['output']}/best_encoder.ckpt"
+    config['lr'] = 1.0e-4
+    config['weight_decay'] = 1.0e-8
     trainer = Trainer(config, pretrain = False, reinit = True) 
     trainer.run()
     

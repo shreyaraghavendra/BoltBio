@@ -2,7 +2,7 @@ import numpy as np
 import torch
 import dgl
 
-def pbar(p=0, msg="", bar_len=5):
+def pbar(p=0, msg="", bar_len=20):
     msg = msg.ljust(50)
     block = int(round(bar_len * p))
     text = "\rProgress: [{}] {}% {}".format("\x1b[32m" + "="*(block-1) + ">" + "\033[0m" + "-" * (bar_len - block), round(p * 100, 2), msg)
@@ -76,7 +76,6 @@ def analyse(graph, actual_graph, vae_graph, edges, metapath):
         b = torch.ones((temp.shape[0], 1))*ind
         temp = torch.cat([b, temp], -1)
         removed.append(temp)
-   
 
     removed = torch.cat(removed, 0).long()    
 
@@ -84,7 +83,7 @@ def analyse(graph, actual_graph, vae_graph, edges, metapath):
 
     new = dgl.edge_type_subgraph(actual_graph, metapath)
 
-    actual_link_labels = torch.cat(([vae_graph.adj(etype = i).to_dense().view(-1) for i in new.canonical_etypes]))
+    actual_link_labels = torch.cat(([new.adj(etype = i).to_dense().view(-1) for i in new.canonical_etypes]))
         
     return {"nodes" : nodes, "edges" : unique, "edge_dict" : edge_dict, 
             "canonical_etypes" : canonical_etypes, "num_nodes" : num_nodes, 
