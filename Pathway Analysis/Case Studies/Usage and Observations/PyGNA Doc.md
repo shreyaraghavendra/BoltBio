@@ -1,6 +1,3 @@
-### **General Pathway Analysis Worflow**
-![image](https://user-images.githubusercontent.com/82365863/146919011-3ddf57c4-d802-4991-a611-f0f9e4e9bbf2.png)
-
 ### **Summary of Analysis Workflow**
 
 - pyGNA aims to identify two things: whether the genes witin a geneset form a pathway and if there's associaton between genes in two different genesets using gene network topology tests(GNA)  and gene network assosication (GNA) tests respectively.
