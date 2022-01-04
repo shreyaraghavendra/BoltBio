@@ -9,6 +9,5 @@
 2. https://sci-hub.hkvisa.net/https://doi.org/10.1016/j.biotechadv.2021.107739 (Analysis methods, Review paper)
 3. https://www.nature.com/articles/s41467-021-23774-w  (Mogonet)  
 4. https://github.com/schulter/EMOGI (EMOGI)
-5. https://www.biorxiv.org/content/10.1101/2020.07.02.184705v1 (Moronet)  
-6. https://www.frontiersin.org/articles/10.3389/fonc.2020.01030/full (Multi Omics review papers)
+5. https://www.frontiersin.org/articles/10.3389/fonc.2020.01030/full (Multi Omics review papers)
 
