@@ -10,4 +10,6 @@
 3. https://www.nature.com/articles/s41467-021-23774-w  (Mogonet)  
 4. https://github.com/schulter/EMOGI (EMOGI)
 5. https://www.frontiersin.org/articles/10.3389/fonc.2020.01030/full (Multi Omics review papers)
-
+6. https://academic.oup.com/nar/article/48/D1/D863/5614573 (multi omics bioinformatics integration to analyse driver genes in cancer, database and workflow)  
+7. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7225957/ (Lung cancer prognostic biomarkers)
+8. 
