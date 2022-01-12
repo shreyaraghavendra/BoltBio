@@ -1,0 +1,8 @@
+*__pycache__*
+*save* 
+*output*
+*wandb*
+*data*
+*.bz2
+*.ipynb
+*.out
