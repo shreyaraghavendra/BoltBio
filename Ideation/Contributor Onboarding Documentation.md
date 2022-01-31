@@ -2,7 +2,7 @@
 
 Types of Analysis:  
 
-I) Differential gene analyis    
+I) Differential gene analysis    
    1. What is differential gene analysis?
    2. Which kind of data does it require?
    3. Which data formats are used to store the data used in the analysis?
