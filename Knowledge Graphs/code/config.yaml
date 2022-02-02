@@ -1,0 +1,22 @@
+graph:
+  path : data/hetionet-v1.0.json
+  save : save
+  reverse : False
+  train_split : 0.9
+  metanodes : [['Gene', 'Disease']]
+encoder : 
+  in_dim : 64
+  hid_dim : 128
+vae: 
+  in_dim : 64
+  dims : [32, 16]
+data:
+  root_dir : completion3d
+pretrain_epochs : 100
+epochs : 100
+steps : 1000
+pretrain_steps : 100
+decode :
+  thresh : 0.505
+lr : 1.0e-2
+weight_decay : 0
