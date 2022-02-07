@@ -2,7 +2,7 @@
 
 Types of Analysis:  
 
-I) Differential gene analyis    
+I) Differential gene analysis    
    1. What is differential gene analysis?
    2. Which kind of data does it require?
    3. Which data formats are used to store the data used in the analysis?
@@ -485,27 +485,7 @@ Additional resources
 
 5.  <https://www.nature.com/articles/s41596-018-0103-9>
 
-IV) Literary Analysis  
-V) Knowledge Graphs  
-
-[Knowledge Graphs](https://www.ibm.com/cloud/learn/knowledge-graph#:~:text=A%20knowledge%20graph%2C%20also%20known,the%20term%20knowledge%20%E2%80%9Cgraph.%E2%80%9D) are a very useful method of representing information and have numerous applications. From Drug-target discovery to gene classification, they are becoming a very popular solution to such problems. This is because graphs can convey topological information, i.e., how various entities are related to one and other, and they can be used to create general-purpose embeddings that can be com- bined with various omics to enrich the information contained. Hence Knowledge Graphs have a powerful representational capacity. For our purposes, we used [Hetionet](https://het.io/), a biomedical heterogeneous knowledge graph.
-
-**Case Study**
-
-***Aim*** : Target Discovery via Link Prediction on Hetionet using Graph Neural Networks
-
-***Introduction*** : 
-Target discovery using Knowledge graphs is mainly done via link prediction. However, since Knowledge graphs are constructed using historical information, there is a chance they are still ’incomplete’. Hence the goal of link prediction is to complete this information gap using the present information of interactions. We use Hetionet to test our model. We aim to find new targets for existing diseases in Hetionet. This task can significantly impact the biomedical field, enabling the industry to better understand the susceptibility of patients to diseases. It can also help doctors better gauge the impact of a disease on the patient and prescribe more effective drugs in the future. We can achieve this by training a graph neural network to generate embeddings for given nodes and edges, which we can then use to measure the probability of an edge of a given type between two nodes.
-
-***Present methods*** : There exist many methods for generating embeddings of a given path. DeepWalk, Node2vec, etc., are methods that establish paths in the graph and update embeddings accord- ingly. Node2Vec optimizes the embeddings by using random walks instead of BFS or DFS. First, it optimizes the transition probabilities and updates the latent vectors once the paths are established. OhmNet is a method that establishes paths using the metapath as described above.
-Most methods presently used are for homogeneous graphs such as protein-protein or gene-gene interaction networks since heterogeneous graphs are very complex. Though there has been a rise in the number of methods that can pro- cess heterogeneous graphs, these are primarily in the non- biomedical field and cannot be directly translated to our use case. Hence we propose a novel architecture inspired by present popular graph neural networks such as the variational graph autoencoder and standard deep learning methods such as representation learning.
-
-***Our proposal*** : 
-The model essentially consists of graph convolutions and graph attention modules with custom message-passing layers. Message passing is how graph neural networks pass information from the neighbourhood of a node to that node. We implemented this using DGL, which allows users to write custom message-passing functions. We first pretrain the model on the complete knowledge graph to produce general-purpose embeddings. We use a contrastive learning approach to enforce the model to learn similar embeddings for nodes of similar types. After which, we take the Disease-Gene subgraph to train the neural network for link prediction. For prediction, after the model generates the embeddings, we take the potential source and target along with the proposed interaction and do a dot-product between the latent vectors to predict the score. The score is then passed through the sigmoid activation function to get the probability of whether that link exists or not. Along with the contrastive loss, we add the classification loss by taking only the positive samples from the graph and corresponding scores predicted by the model. This loss does not inhibit the model from learning new connections and promotes an understanding of valid links.
-
-***Results*** : We obtained very high accuracy and F1 scores after training the model. We predicted approximately 300 new links in Het- ionet, which will now be verified in laboratories. Incorporating various omics data as described in supplementary image 8 can strengthen our results. We can easily concatenate them to our generated embeddings. New heterogeneous graph methods incorporate random walk methods in graph convolutions and show improved results, which is something we can incorporate in our method. Due to limited resources, we could not run the model at total capacity and had to sample a smaller graph rather the full Hetionet graph for predictions. We can expect more robust results once we get access to more resources.
-
-VI) Biological Network Datasets    
+IV) Biological Network Datasets    
 
   These contain graphs with gene/protein/disease/drug interactions:  
   http://snap.stanford.edu/biodata/index.html  
@@ -515,7 +495,7 @@ VI) Biological Network Datasets
   https://thebiogrid.org/  
   http://www.ndexbio.org/#/networkset/e8ebbdde-86dc-11e7-a10d-0ac135e8bacf?accesskey=7fbd23635b798321954e66c63526c46397a3f45b40298cf43f22d07d4feed0fa  
 
-VII) Methylation Analysis  
+V) Methylation Analysis  
 
    _What is Methylation, CpG islands? Role in Disease?_  
       https://www.youtube.com/watch?v=bc3wtVXyAXo&ab_channel=NeuralAcademy  
@@ -536,43 +516,11 @@ genes, but contributes to cancer by influencing gene expression.
 
 
    a) https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5925605/  
-   b) https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3620319/
+   b) https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3620319/  
    c) https://github.com/Christensen-Lab-Dartmouth/PyMethylProcess  
    d) https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02220-y  
    e) https://cancerdiscovery.aacrjournals.org/content/11/9/2266  
-   	GitHub: https://github.com/HengPan2007/MethSig
-
-   **AIM**: Identify methylation driver genes from passenger genes
-MethSig accounts for varying stochastic and disordered hypermethylation rates across genome which results in heterogeneity in the tumor. This is a big challenge in distinguishing driver from passenger genes.
-Widely used statistical methods produce thousands of candidate promoter hypermethylation sites, most of which are passengers, very few drivers.
-
-   **DHcR**:  
-- Promoter hypermethylation can be measured using differentially hypermethylated cytosine ratio (DHcR) = hypermethylated cytosines (HC) / total number of CpGs profiled in promoters.   
-- Uniform background models use the average DHcR which implies assuming a constant HC rate, when in reality the HC rate varies across the genome. This leads to many passenger genes being identified as drivers.   
-- Our model uses variable DHcR. This means, MethSig compares a calculated expected methylation rate with promoter specific methylation rate (tumor vs expected).
-- This expected value is calculated using a beta regression model and below covariates.  
-- How do we know if the BETA model is a good estimate of tumor DHcR value? The drivers were cross-patient aggregated from a large population, not a particular subgroup, as a driver would affect large number of patients.   
-
-   **Covariates included**:  
-   (i) Silenced gene expression   
-   (ii) Replication time  
-   (iii) Proportion of discordant reads (PDR)- If all the CpGs on a specific read are methylated or unmethylated, the read is classified as concordant. Otherwise, it is classified as discordant. At each CpG, the PDR is equal to the number of discordant reads divided by the total number of reads that cover that location. Promoter PDR is given by averaging the values of individual CpGs, as calculated for all CpGs within the promoter of interest that are covered by a minimum of 10 reads that contain at least 4 CpGs. The normal PDR was calculated by averaging PDR of all the normal samples.
-Samples with High PDR- low reliability as drivers and vice-versa.
-
-   **Benchmarking against other models:**  
-   (i) Q-Q plots with p-values
-
-   (ii) Robustness across datasets- MethSig was applied to individual datasets of 3 tumor types in CLL RRBS. MethSig resulted in a well-calibrated Q-Q plot and a deviation factor closer to 1, compared with benchmarked methods.
-   (iii) Accuracy of identified drivers-  MethSig drivers had large overlap with top selections from other studies with similar p value cutoffs. MethSig achieved higher performance compared with benchmarked methods in identifying DNAme drivers associated with gene silencing.
-   (iv) MethSig-array designed for methylation arrays generated from Illumina also performed better against other methods with q-q plots and deviation closer to 1.
-
-   **Biological validation:**   
-    (i) Diagnosis: Using pathway enrichment analysis (link), established TSGs in many identified drivers, many genes part of core cell pathways associated with cancer, and the whole section under “Candidate CLL DNAme Drivers Include Established TSGs and Were Functionally Validated to Enhance Cancer Cell Fitness”
-
-    (ii) Prognosis: Refer section under “MethSig-nominated CLL DNAme Drivers Provide Independent Prognostic Information and Are Associated with Adverse Outcomes”.
-
-    (iii) Evaluating the clustering of methylated CpG positions- Promoters with a nonrandom distribution of methylated CpGs are more likely to exert repression on corresponding genes and result in a substantial phenotypic impact. MethSig observed higher clustering of methylated positions in hypermethylated drivers. 
-
+   	GitHub: https://github.com/HengPan2007/MethSig  
    f) https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-020-3443-8  
    g) https://www.sciencedirect.com/science/article/abs/pii/S0888754319309449?dgcid=rss_sd_all  
    h) https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0226461 
