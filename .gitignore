@@ -2,7 +2,6 @@
 *save* 
 *output*
 *wandb*
-*data*
 *.bz2
-*.ipynb
 *.out
+*DS_*
