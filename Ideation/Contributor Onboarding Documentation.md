@@ -485,7 +485,6 @@ Additional resources
 
 5.  <https://www.nature.com/articles/s41596-018-0103-9>
 
-
 IV) Biological Network Datasets    
 
   These contain graphs with gene/protein/disease/drug interactions:  
